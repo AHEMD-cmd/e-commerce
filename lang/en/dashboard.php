@@ -3,6 +3,7 @@
 return [
     'dashboard' => 'Dashboard',
     'roles'=>'Authorizations',
+    'role'=>'Role',
     'create_role'=>'Create Authorization',
     'edit_role'=>'Edit Authorization',
     'delete_role'=>'Delete Authorization',
@@ -63,6 +64,8 @@ return [
     'roles_table'=>' Roles Table',
     'select_shipping_price'=>'Select Shipping Price',
     'change_price'=>' Change Price',
+    'english'=>'In English',
+    'arabic'=>'In Arabic',
 
     'categories'=>'Categories',
     'brands'=>'Brands',
@@ -88,7 +91,7 @@ return [
     'products'=>'Products ',
     'orders'=>'Orders ',
     'shipping'=>'Shipping ',
-    'roles'=>'Roles&Permissions',
+    'roles'=>'Roles & Permissions',
     'create_brand'=>'Create Brand',
 
     'coupons'=>'Coupons ',

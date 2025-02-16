@@ -56,7 +56,7 @@ class Admin extends Authenticatable
     {
         return $value == 1 ? 'Active' : 'Inactive';
     }
-    public function hasAccess($config_permession)  // products , users , admins
+    public function hasAccess($configPermission)  // products , users , admins
     {
 
         $role = $this->role;
@@ -65,8 +65,8 @@ class Admin extends Authenticatable
             return false;
         }
 
-        foreach($role->permession as $permession){
-            if($config_permession == $permession ?? false){
+        foreach($role->permissions as $permission){
+            if($configPermission == $permission ?? false){
                   return true;
             }
         }

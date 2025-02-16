@@ -13,12 +13,9 @@ class Role extends Model
     public $translatable = ['role'];
     protected $guarded = [];
 
-
-
-    public function getpermessionAttribute($value)
-    {
-        return json_decode($value);
-    }
+    protected $casts = [
+        'permissions' =>  'json'
+    ];
 
     public function admins()
     {
