@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -47,6 +48,13 @@ Route::group(
             ################################ Roles Routes ################################
             Route::group(['middleware' => 'can:roles'], function () {
                 Route::resource('roles', RoleController::class);
+            });
+
+              ################################ Admins Routes ############################
+              Route::group(['middleware' => 'can:admins'], function () {
+                Route::resource('admins',        AdminController::class);
+                Route::get('admins/{id}/status', [AdminController::class, 'changeStatus'])
+                    ->name('admins.status');
             });
         });
     }
