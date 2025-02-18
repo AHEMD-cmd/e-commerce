@@ -117,7 +117,7 @@
             @can('settings')
                 <li class="nav-item">
                     <a href="javascript:void(0);">
-                        <i class="la la-info"></i>
+                        <i class="la la-gears"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">
                             {{ __('dashboard.settings') }}
                         </span>
