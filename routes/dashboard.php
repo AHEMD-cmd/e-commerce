@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\WorldController;
+use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
@@ -87,6 +88,13 @@ Route::group(
                 Route::resource('brands', BrandController::class)->except('show');
                 Route::get('brands-all', [BrandController::class, 'getAll'])
                     ->name('brands.all');
+            });
+
+              ############################### Coupons Routes ###############################
+              Route::group(['middleware' => 'can:coupons'], function () {
+                Route::resource('coupons', CouponController::class)->except('show');
+                Route::get('coupons-all', [CouponController::class, 'getAll'])
+                    ->name('coupons.all');
             });
         });
     }

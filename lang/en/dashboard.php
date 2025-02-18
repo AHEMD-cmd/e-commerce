@@ -214,5 +214,8 @@ return [
     'yes_delete_it' => 'Yes, Delete',
 
 
+    //datatables
+
+    'details_for' => 'Details For',
 
 ];

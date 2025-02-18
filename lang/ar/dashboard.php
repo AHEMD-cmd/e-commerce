@@ -108,7 +108,7 @@ return [
     'edit_coupon' => ' تعديل كوبون',
     'limitation' => ' الحد المسموح ',
     'discount' => ' %الخصم',
-    'code' => 'Code',
+    'code' => 'الكود',
     'is_active' => ' هل مفعله',
     'start_date' => ' تاريخ البدء',
     'end_date' => ' تاريخ الانتهاء',
@@ -178,6 +178,8 @@ return [
     //sweet alert
     'yes_delete_it' => 'نعم, حذف',
     'no_cancel' => 'لا تراجع',
+
+    'details_for' => 'تفاصيل ل',
 
 
 ];

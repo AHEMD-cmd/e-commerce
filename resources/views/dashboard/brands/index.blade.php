@@ -76,17 +76,7 @@
                                         <body>
                                             {{-- empty --}}
                                         </body>
-                                        <tfoot>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>{{ __('dashboard.name') }}</th>
-                                                <th>{{ __('dashboard.logo') }}</th>
-                                                <th>{{ __('dashboard.status') }}</th>
-                                                <th>{{ __('dashboard.products_count') }}</th>
-                                                <th>{{ __('dashboard.created_at') }}</th>
-                                                <th>{{ __('dashboard.actions') }}</th>
-                                            </tr>
-                                        </tfoot>
+                                       
                                     </table>
 
                                 </div>
@@ -113,6 +103,7 @@
     {{--  Data tables  --}}
     <script>
         var lang = "{{ app()->getLocale() }}";
+        var details = "{{__('dashboard.details_for')}}";
 
         $('#yajra_table').DataTable({
             processing: true,
@@ -129,7 +120,7 @@
                     display: DataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details for ' + data['name'];
+                            return details + ' ' +data['name'] ;
                         }
                     }),
                     renderer: DataTable.Responsive.renderer.tableAll({

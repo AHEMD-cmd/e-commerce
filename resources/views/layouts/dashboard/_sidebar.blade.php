@@ -88,6 +88,17 @@
                     </ul>
                 </li>
             @endcan
+            @can('coupons')
+                <li class=" nav-item"><a href="index.html"><i class="la la-500px"></i><span class="menu-title"
+                            data-i18n="nav.dash.main">{{ __('dashboard.coupons') }}</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $couponsCount }}</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ request()->routeIs('dashboard.coupons.*') ? 'active' : '' }}"><a class="menu-item" href="{{ route('dashboard.coupons.index') }}"
+                                data-i18n="nav.dash.ecommerce">{{ __('dashboard.coupons') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
 
 
         </ul>
