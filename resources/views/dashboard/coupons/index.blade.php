@@ -103,6 +103,7 @@
             processing: true,
             serverSide: true,
             fixedHeader: true,
+            pageLength: 10,  
 
             colReorder: true,
             rowReorder: {
@@ -211,7 +212,7 @@
                 success: function(data) {
                     if (data.status == 'success') {
                         $('#createCoupon')[0].reset();
-                        $('#yajra_table').DataTable().page(currentPage).draw(false);
+                        $('#yajra_table').DataTable().page(currentPage).draw(false); // go back to the current page, so false means do not go to the fist page
                         $('#couponModal').modal('hide');
                         Swal.fire({
                             position: "top-center",

@@ -53,13 +53,7 @@ class CouponController extends Controller
             'message' => __('dashboard.success_msg')
         ], 201);
     }
-
-
-    public function edit(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */

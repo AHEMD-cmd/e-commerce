@@ -16,7 +16,6 @@
                     <ul id="error_list_edit"></ul>
                 </div>
 
-
                 <form action="" id="updateCoupon" class="form" method="POST" >
                     @csrf
                     @method('PUT')

@@ -93,12 +93,46 @@
                             data-i18n="nav.dash.main">{{ __('dashboard.coupons') }}</span><span
                             class="badge badge badge-info badge-pill float-right mr-2">{{ $couponsCount }}</span></a>
                     <ul class="menu-content">
-                        <li class="{{ request()->routeIs('dashboard.coupons.*') ? 'active' : '' }}"><a class="menu-item" href="{{ route('dashboard.coupons.index') }}"
+                        <li class="{{ request()->routeIs('dashboard.coupons.*') ? 'active' : '' }}"><a class="menu-item"
+                                href="{{ route('dashboard.coupons.index') }}"
                                 data-i18n="nav.dash.ecommerce">{{ __('dashboard.coupons') }}</a>
                         </li>
                     </ul>
                 </li>
             @endcan
+
+            @can('faqs')
+                <li class=" nav-item"><a href="index.html"><i class="la la-info"></i><span class="menu-title"
+                            data-i18n="nav.dash.main">{{ __('dashboard.faqs') }}</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $faqsCount }}</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ request()->routeIs('dashboard.faqs.*') ? 'active' : '' }}"><a class="menu-item"
+                                href="{{ route('dashboard.faqs.index') }}"
+                                data-i18n="nav.dash.ecommerce">{{ __('dashboard.faqs') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+
+            @can('settings')
+                <li class="nav-item">
+                    <a href="javascript:void(0);">
+                        <i class="la la-info"></i>
+                        <span class="menu-title" data-i18n="nav.dash.main">
+                            {{ __('dashboard.settings') }}
+                        </span>
+                    </a>
+                    <ul class="menu-content">
+                        <li class="{{ request()->routeIs('dashboard.settings.index') ? 'active' : '' }}">
+                            <a class="menu-item" href="{{ route('dashboard.settings.index') }}"
+                                data-i18n="nav.dash.ecommerce">
+                                {{ __('dashboard.settings') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+
 
 
         </ul>

@@ -1,14 +1,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<meta name="description" content="">
-{{-- <meta name="description" content="{{ $setting->meta_description }}"> --}}
+<meta name="description" content="{{ $setting->meta_description }}">
 <meta name="author" content="PIXINVENT">
 <title>{{ __('dashboard.dashboard') }}|@yield('title')</title>
-<link rel="apple-touch-icon" href="">
-{{-- <link rel="apple-touch-icon" href="{{asset($setting->favicon)}}"> --}}
-<link rel="shortcut icon" type="image/x-icon" href="">
-{{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset($setting->favicon)}}"> --}}
+<link rel="apple-touch-icon" href="{{asset($setting->favicon)}}">
+<link rel="shortcut icon" type="image/x-icon" href="{{asset($setting->favicon)}}">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
 rel="stylesheet">
 <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
@@ -24,6 +21,7 @@ rel="stylesheet">
 
 
 @if(Config::get('app.locale') == 'ar')
+
 
 <link rel="stylesheet" type="text/css" href="{{asset('assets/dashboard')}}/css-rtl/vendors.css">
 <!-- BEGIN MODERN CSS-->

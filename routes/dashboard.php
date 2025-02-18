@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\FaqController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\WorldController;
 use App\Http\Controllers\Dashboard\CouponController;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
@@ -95,6 +97,19 @@ Route::group(
                 Route::resource('coupons', CouponController::class)->except('show');
                 Route::get('coupons-all', [CouponController::class, 'getAll'])
                     ->name('coupons.all');
+            });
+
+            ############################### Faqs Routes ################################
+            Route::group(['middleware' => 'can:faqs'], function () {
+                Route::resource('faqs', FaqController::class);
+                Route::get('faqs-all', [FaqController::class, 'getAll'])
+                    ->name('faqs.all');
+            });
+
+            ############################### Settings Routes ###############################
+            Route::group(['middleware' => 'can:settings', 'as' => 'settings.'], function () {
+                Route::get('settings',      [SettingController::class, 'index'])->name('index');
+                Route::put('settings/{id}', [SettingController::class, 'update'])->name('update');
             });
         });
     }
