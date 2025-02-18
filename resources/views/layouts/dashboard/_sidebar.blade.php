@@ -13,7 +13,8 @@
                             <a class="menu-item" href="{{ route('dashboard.roles.create') }}" data-i18n="">
                                 {{ __('dashboard.create_role') }} </a>
                         </li>
-                        <li class="{{ request()->routeIs('dashboard.roles.index') || request()->routeIs('dashboard.roles.edit') ? 'active' : '' }}">
+                        <li
+                            class="{{ request()->routeIs('dashboard.roles.index') || request()->routeIs('dashboard.roles.edit') ? 'active' : '' }}">
                             <a class="menu-item" href="{{ route('dashboard.roles.index') }}"
                                 data-i18n="">{{ __('dashboard.roles') }} </a>
                         </li>
@@ -23,13 +24,16 @@
 
             @can('admins')
                 <li class=" nav-item"><a href="#"><i class="la la-user-secret"></i><span class="menu-title"
-                            data-i18n="nav.templates.main">{{ __('dashboard.admins') }}</span></a>
+                            data-i18n="nav.templates.main">{{ __('dashboard.admins') }}</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $adminsCount }}</span></a>
+
                     <ul class="menu-content">
                         <li class="{{ request()->routeIs('dashboard.admins.create') ? 'active' : '' }}">
                             <a class="menu-item" href="{{ route('dashboard.admins.create') }}"
                                 data-i18n="">{{ __('dashboard.create_admin') }} </a>
                         </li>
-                        <li class="{{ request()->routeIs('dashboard.admins.index') || request()->routeIs('dashboard.admins.edit') ? 'active' : '' }}">
+                        <li
+                            class="{{ request()->routeIs('dashboard.admins.index') || request()->routeIs('dashboard.admins.edit') ? 'active' : '' }}">
                             <a class="menu-item" href="{{ route('dashboard.admins.index') }}"
                                 data-i18n="">{{ __('dashboard.admins') }}</a>
                         </li>
@@ -51,10 +55,13 @@
             @endcan
 
             @can('categories')
-                <li class="nav-item"><a href="index.html"><i class="la la-folder"></i><span class="menu-title"
-                            data-i18n="nav.dash.main">{{ __('dashboard.categories') }}</span></a>
+                <li class=" nav-item"><a href="index.html"><i class="la la-folder"></i><span class="menu-title"
+                            data-i18n="nav.dash.main">{{ __('dashboard.categories') }}</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $categoriesCount }}</span></a>
+
                     <ul class="menu-content">
-                        <li class="{{ request()->routeIs('dashboard.categories.index') ||  request()->routeIs('dashboard.categories.edit') ? 'active' : '' }} ">
+                        <li
+                            class="{{ request()->routeIs('dashboard.categories.index') || request()->routeIs('dashboard.categories.edit') ? 'active' : '' }} ">
                             <a class="menu-item" href="{{ route('dashboard.categories.index') }}"
                                 data-i18n="nav.dash.ecommerce">{{ __('dashboard.categories') }}</a>
                         </li>
@@ -69,7 +76,9 @@
 
             @can('brands')
                 <li class=" nav-item"><a href="index.html"><i class="la la-check-square"></i><span class="menu-title"
-                            data-i18n="nav.dash.main">{{ __('dashboard.brands') }}</span></a>
+                            data-i18n="nav.dash.main">{{ __('dashboard.brands') }}</span><span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{ $brandsCount }}</span></a>
+
                     <ul class="menu-content">
                         <li class="{{ request()->routeIs('dashboard.brands.*') ? 'active' : '' }}">
                             <a class="menu-item" href="{{ route('dashboard.brands.index') }}"
