@@ -16,15 +16,15 @@ class PasswordService
         $this->passwordRepository = $passwordRepository;
     }
 
-    public function sendOtp($email)
+    public function verifyEmail($email)
     {
         $admin = $this->passwordRepository->getAdminByEmail($email);
-        if(!$admin){
+        if (!$admin) {
             return false;
         }
-        $admin->notify(new SendOtpNotify());
-        return $admin;
 
+        $admin->notify(new SendOtpNotify($email));
+        return $admin;
     }
 
     public function verifyOtp($data)
@@ -32,8 +32,9 @@ class PasswordService
         $otp = $this->passwordRepository->verifyOtp($data);
         return $otp->status;
     }
-    public function resetPassword($email , $password)
+
+    public function resetPassword($email, $password)
     {
-        return $this->passwordRepository->resetPassword($email , $password);
+        return $this->passwordRepository->resetPassword($email, $password);
     }
 }

@@ -21,13 +21,16 @@
 
  {{-- sweet alerts --}}
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
  <script>
-     //  translations
+     // Translations
      let title = "{{ __('dashboard.are_you_sure') }}";
+     let confirmButtonText = "{{ __('dashboard.yes_delete_it') }}";
+     let cancelButtonText = "{{ __('dashboard.no_cancel') }}";
 
      $(document).on('click', '.delete_confirm', function(e) {
          e.preventDefault();
-         form = $(this).closest('form');
+         let form = $(this).closest('form');
 
          const swalWithBootstrapButtons = Swal.mixin({
              customClass: {
@@ -36,34 +39,20 @@
              },
              buttonsStyling: true
          });
+
          swalWithBootstrapButtons.fire({
              title: title,
-             text: "You won't be able to revert this!",
              icon: "warning",
              showCancelButton: true,
-             confirmButtonText: "Yes, delete it!",
-             cancelButtonText: "No, cancel!",
+             confirmButtonText: confirmButtonText,
+             cancelButtonText: cancelButtonText,
              reverseButtons: true
          }).then((result) => {
              if (result.isConfirmed) {
-                 form.submit();
-                 swalWithBootstrapButtons.fire({
-                     title: "Deleted!",
-                     text: "Your file has been deleted.",
-                     icon: "success"
-                 });
-             } else if (
-                 /* Read more about handling dismissals below */
-                 result.dismiss === Swal.DismissReason.cancel
-             ) {
-                 swalWithBootstrapButtons.fire({
-                     title: "Cancelled",
-                     text: "Your imaginary file is safe :)",
-                     icon: "error"
-                 });
+                 form.submit(); // Submit the form if confirmed
              }
+             // No need for else-if or additional logic for cancellation
          });
-
      });
  </script>
  {{-- End sweet alerts --}}
@@ -108,19 +97,19 @@
 
 
  {{-- fileinput --}}
-<script src="{{ asset('vendor/file-input/js/fileinput.min.js') }}"></script>
-<script src="{{ asset('vendor/file-input/themes/fa5/theme.min.js') }}"></script>
+ <script src="{{ asset('vendor/file-input/js/fileinput.min.js') }}"></script>
+ <script src="{{ asset('vendor/file-input/themes/fa5/theme.min.js') }}"></script>
 
-@if(Config::get('app.locale') == 'ar')
-<script src="{{ asset('vendor/file-input/js/locales/LANG.js')}}"></script>
-<script src="{{ asset('vendor/file-input/js/locales/ar.js') }}"></script>
-@endif
-<script>
-    var lang = "{{ app()->getLocale() }}";
-    $(function() {
+ @if (Config::get('app.locale') == 'ar')
+     <script src="{{ asset('vendor/file-input/js/locales/LANG.js') }}"></script>
+     <script src="{{ asset('vendor/file-input/js/locales/ar.js') }}"></script>
+ @endif
+ <script>
+     var lang = "{{ app()->getLocale() }}";
+     $(function() {
          $('#single-image').fileinput({
              theme: 'fa5',
-             language:lang,
+             language: lang,
              allowedFileTypes: ['image'],
              maxFileCount: 1,
              enableResumableUpload: false,
@@ -129,6 +118,5 @@
          });
 
      });
-</script>
-{{-- end fileinput --}}
-
+ </script>
+ {{-- end fileinput --}}

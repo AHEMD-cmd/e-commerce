@@ -9,8 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Notifications\SendOtpNotify;
 use App\Services\Auth\PasswordService;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends Controller implements HasMiddleware
 {
     protected $otp2;
     protected $passwordService;
@@ -19,33 +21,26 @@ class ForgotPasswordController extends Controller
         $this->passwordService = $passwordService;
         $this->otp2  = new Otp;
     }
+
+    public static function middleware()
+    {
+        return [
+            new Middleware(middleware: 'guest:admin', except: ['logout']),
+        ];
+    }
+
     public function showEmailForm()
     {
         return view('dashboard.auth.password.email');
     }
-    public function sendOtp(ForgotPasswordRequest $request)
+
+    public function sendEmail(ForgotPasswordRequest $request)
     {
-        $admin = $this->passwordService->sendOtp($request->email);
+        $admin = $this->passwordService->verifyEmail($request->email);
         if (!$admin) {
             return redirect()->back()->withErrors(['email' => __('passwords.email_is_not_regiterd')]);
         }
-        return redirect()->route('dashboard.password.verify' , ['email'=>$admin->email]);
-
+        return redirect()->back()->with(['success' => __('passwords.check_your_email')]);
     }
-    public function showOtpForm($email)
-    {
-        return view('dashboard.auth.password.confirm' , ['email'=>$email]);
-    }
-    public function verifyOtp(ForgotPasswordRequest $request)
-    {
-        $data = $request->only('email' , 'code');
-
-        if(!$this->passwordService->verifyOtp($data)){
-            return redirect()->back()->withErrors(['error'=>'Code is invalid!']);
-        }
-        return redirect()->route('dashboard.password.reset' , ['email'=>$request->email]);
-
-    }
+ 
 }
-
-

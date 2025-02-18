@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\BrandController;
+use App\Http\Controllers\Dashboard\WorldController;
 use App\Http\Controllers\Dashboard\WelcomeController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Dashboard\Auth\ResetPasswordController;
@@ -27,13 +30,11 @@ Route::group(
 
             Route::controller(ForgotPasswordController::class)->group(function () {
                 Route::get('email',          'showEmailForm')->name('email');
-                Route::post('email',         'sendOtp')->name('email.post');
-                Route::get('verify/{email}', 'showOtpForm')->name('verify');
-                Route::post('verify/',       'verifyOtp')->name('verify.post');
+                Route::post('email',         'sendEmail')->name('email.post');
             });
             Route::controller(ResetPasswordController::class)->group(function () {
-                Route::get('reset/{email}', 'showResetForm')->name('reset');
-                Route::post('reset',         'resetPassword')->name('reset.post');
+                Route::get('reset/{email}/{token}', 'showResetForm')->name('reset');
+                Route::post('reset', 'resetPassword')->name('reset.post');
             });
         });
         ################################## End Pssword #################################
@@ -50,11 +51,42 @@ Route::group(
                 Route::resource('roles', RoleController::class);
             });
 
-              ################################ Admins Routes ############################
-              Route::group(['middleware' => 'can:admins'], function () {
+            ################################ Admins Routes ############################
+            Route::group(['middleware' => 'can:admins'], function () {
                 Route::resource('admins',        AdminController::class);
                 Route::get('admins/{id}/status', [AdminController::class, 'changeStatus'])
                     ->name('admins.status');
+            });
+
+            ############################ Shipping & Countries ##########################
+            Route::group(['middleware' => 'can:global_shipping'], function () {
+                Route::controller(WorldController::class)->group(function () {
+
+                    Route::prefix('countries')->name('countries.')->group(function () {
+                        Route::get('/',                              'getAllCountries')->name('index');
+                        Route::get('/{country_id}/governorates',     'getGovsByCountry')->name('governorates.index');
+                        Route::get('/change-status/{country_id}',    'changeStatus')->name('status');
+                    });
+
+                    Route::prefix('governorates')->name('governorates.')->group(function () {
+                        Route::get('/change-status/{gov_id}',       'changeGovStatus')->name('status');
+                        Route::put('/shipping-price',               'changeShippingPrice')->name('shipping-price');
+                    });
+                });
+            });
+
+            ############################### Category Routes ###############################
+            Route::group(['middleware' => 'can:categories'], function () {
+                Route::resource('categories', CategoryController::class)->except('show');
+                Route::get('categories-all', [CategoryController::class, 'getAll'])
+                    ->name('categories.all');
+            });
+
+            ############################### Brands Routes ###############################
+            Route::group(['middleware' => 'can:brands'], function () {
+                Route::resource('brands', BrandController::class)->except('show');
+                Route::get('brands-all', [BrandController::class, 'getAll'])
+                    ->name('brands.all');
             });
         });
     }

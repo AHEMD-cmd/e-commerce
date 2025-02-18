@@ -22,10 +22,9 @@ class AuthController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-               new Middleware(middleware: 'guest:admin', except: ['logout']),
+            new Middleware(middleware: 'guest:admin', except: ['logout']),
         ];
     }
-
 
     public function showLoginForm()
     {
@@ -34,13 +33,12 @@ class AuthController extends Controller implements HasMiddleware
 
     public function login(LoginAdminRequest $request)
     {
-       $credenstials = $request->only(['email' , 'password']);
+        $credenstials = $request->only(['email', 'password']);
 
-       if($this->authService->login($credenstials ,'admin',$request->remember)){
+        if ($this->authService->login($credenstials, 'admin', $request->remember)) {
             return redirect()->intended(route('dashboard.welcome'));
         }
-        return redirect()->back()->withErrors(['email'=> __('auth.not_match')]);
-
+        return redirect()->back()->withErrors(['email' => __('auth.not_match')]);
     }
 
     public function logout()
@@ -48,5 +46,4 @@ class AuthController extends Controller implements HasMiddleware
         $this->authService->logout('admin');
         return redirect()->route('dashboard.login');
     }
-
 }

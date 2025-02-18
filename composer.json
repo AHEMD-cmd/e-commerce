@@ -13,7 +13,10 @@
         "mcamara/laravel-localization": "^2.2",
         "spatie/laravel-translatable": "^6.11",
         "codezero/laravel-unique-translation": "^4.3",
-        "php-flasher/flasher-laravel": "^2.1"
+        "php-flasher/flasher-laravel": "^2.1",
+        "ichtrojan/laravel-otp": "^2.0",
+        "cviebrock/eloquent-sluggable": "^11.0",
+        "yajra/laravel-datatables-oracle": "11.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

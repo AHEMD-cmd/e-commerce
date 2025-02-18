@@ -25,9 +25,10 @@ class PasswordRepository
 
     public function verifyOtp($data)
     {
-        $otp = $this->otp->validate($data['email'] , $data['code']);
+        $otp = $this->otp->validate($data['email'] , $data['token']);
         return $otp;
     }
+
     public function resetPassword($email , $password)
     {
         $admin = self::getAdminByEmail($email);

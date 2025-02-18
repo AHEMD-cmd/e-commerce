@@ -28,7 +28,7 @@ class RoleSeeder extends Seeder
                 'ar'=>'مدير',
                 'en'=>'Manger',
             ],
-            'permissions'=>json_encode($permissions),
+            'permissions'=> $permissions,
         ]);
     }
 }

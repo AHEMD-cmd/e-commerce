@@ -62,7 +62,8 @@ return [
     'arabic' => 'باللغة العربية',
     'active'=>'تفعيل',
     'deactive'=>'الغاء التفعيل',
-    'no_data'=> 'No Data',
+    'no_data'=> 'لا يوجد بيانات',
+    'shippping'=>'الشحن',
 
     'governorates' => 'المحافظات',
     'governorates_table' => 'جدول المحافظات',
@@ -73,6 +74,8 @@ return [
     'change_price' => ' تغير السعر',
 
     'categories' => 'الاقسام',
+    'parent_category' => 'القسم الرئيسي',
+    'select_parent' => 'اختار القسم الرئيسي',
     'brands' => 'العلامات التجاريه',
     'category_create' => 'انشاء قسم ',
     'brand_create' => 'انشاء علامه تجاريه ',
@@ -170,6 +173,11 @@ return [
     'attribute_value_en' => 'قيمة السمة انجليزي',
     'add_more' => 'اضف اكثر',
     'product_name' => 'اسم المنتج',
+
+
+    //sweet alert
+    'yes_delete_it' => 'نعم, حذف',
+    'no_cancel' => 'لا تراجع',
 
 
 ];

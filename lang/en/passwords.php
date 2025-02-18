@@ -19,5 +19,6 @@ return [
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
     'email_is_not_regiterd'=>'Email Is not Registerd',
+    'check_your_email'=>'check your email',
 
 ];
